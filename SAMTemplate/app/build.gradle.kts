@@ -25,20 +25,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    sourceSets {
-        getByName("main") {
-            kotlin.directories.setFrom("src/main/kotlin")
-            java.directories.setFrom(emptyList<File>())
-        }
-        getByName("test") {
-            kotlin.directories.setFrom(emptyList<File>())
-            java.directories.setFrom(emptyList<File>())
-        }
-        getByName("androidTest") {
-            kotlin.directories.setFrom(emptyList<File>())
-            java.directories.setFrom(emptyList<File>())
-        }
-    }
+
 }
 
 dependencies {
