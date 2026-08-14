@@ -44,6 +44,7 @@ object APKPatcher {
         val templateFile = File(workDir, "template_copy.apk")
         val unsignedFile = File(workDir, "unsigned.apk")
         val signedFile = File(outputDir, "$newPackage.apk")
+        val dexSuffix = newPackage.removePrefix("fyi.reign.sam.shortcut.")
 
         // Copy template from assets
         context.assets.open("template.apk").use { input ->
@@ -70,6 +71,10 @@ object APKPatcher {
                         entry.name == "AndroidManifest.xml" -> {
                             val original = zip.getInputStream(entry).readBytes()
                             AXMLPatcher.patch(original, newPackage, label)
+                        }
+                        entry.name.matches(Regex("classes\\d*\\.dex")) -> {
+                            val original = zip.getInputStream(entry).readBytes()
+                            DEXPatcher.patch(original, dexSuffix)
                         }
                         iconBytes != null && ICON_PATHS.contains(entry.name) -> {
                             val density = densityFromPath(entry.name)

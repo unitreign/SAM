@@ -43,8 +43,8 @@ class ShortcutCatcherActivity : Activity() {
         val intentUri = shortcutIntent?.toUri(Intent.URI_INTENT_SCHEME) ?: ""
 
         val suffix = run {
-            val bytes = ByteArray(6).also { SecureRandom().nextBytes(it) }
-            bytes.joinToString("") { "%02x".format(it) }.take(11)
+            val bytes = ByteArray(5).also { SecureRandom().nextBytes(it) }
+            "x" + bytes.joinToString("") { "%02x".format(it) }
         }
         val generatedPackage = "fyi.reign.sam.shortcut.$suffix"
 

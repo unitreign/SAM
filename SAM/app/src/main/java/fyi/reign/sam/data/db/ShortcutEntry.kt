@@ -10,7 +10,7 @@ data class ShortcutEntry(
     val sourcePackage: String,
     val intentUri: String,
     val generatedPackageName: String,
-    val iconPath: String,
+    val iconPath: String?,
     val createdAt: Long = System.currentTimeMillis(),
     val isInstalled: Boolean = false
 )

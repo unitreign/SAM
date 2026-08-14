@@ -1,16 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("org.jetbrains.kotlin.android")
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.ksp)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
     namespace = "fyi.reign.sam"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "fyi.reign.sam"
@@ -24,14 +21,15 @@ android {
 
     buildTypes {
         release {
-            optimization {
-                enable = false
-            }
+            isMinifyEnabled = false
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -50,7 +48,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
     implementation(libs.apksig)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
