@@ -1,0 +1,12 @@
+# Build outputs
+.gradle/
+build/
+app/build/
+local.properties
+
+# Template APK — build from SAMTemplate project, rename to template.apk, place in app/src/main/assets/
+app/src/main/assets/template.apk
+
+# IDE
+.idea/
+*.iml
