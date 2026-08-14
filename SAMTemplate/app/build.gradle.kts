@@ -25,22 +25,18 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-
     sourceSets {
         getByName("main") {
-            kotlin.srcDirs("src/main/kotlin")
-            java.setSrcDirs(emptyList<File>())
+            kotlin.directories.setFrom("src/main/kotlin")
+            java.directories.setFrom(emptyList<File>())
         }
         getByName("test") {
-            kotlin.setSrcDirs(emptyList<File>())
-            java.setSrcDirs(emptyList<File>())
+            kotlin.directories.setFrom(emptyList<File>())
+            java.directories.setFrom(emptyList<File>())
         }
         getByName("androidTest") {
-            kotlin.setSrcDirs(emptyList<File>())
-            java.setSrcDirs(emptyList<File>())
+            kotlin.directories.setFrom(emptyList<File>())
+            java.directories.setFrom(emptyList<File>())
         }
     }
 }
